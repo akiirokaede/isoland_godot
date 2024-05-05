@@ -1,0 +1,20 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://bxwxonpd522ua"]
+
+[ext_resource type="Texture2D" uid="uid://lj11ehjhxpod" path="res://assets/UI/title_button.png" id="1_qt2ja"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tvtbl"]
+texture = ExtResource("1_qt2ja")
+texture_margin_left = 50.0
+texture_margin_top = 30.0
+texture_margin_right = 50.0
+texture_margin_bottom = 30.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_t8xpi"]
+
+[resource]
+default_font_size = 50
+Button/styles/disabled = SubResource("StyleBoxTexture_tvtbl")
+Button/styles/focus = SubResource("StyleBoxEmpty_t8xpi")
+Button/styles/hover = SubResource("StyleBoxTexture_tvtbl")
+Button/styles/normal = SubResource("StyleBoxTexture_tvtbl")
+Button/styles/pressed = SubResource("StyleBoxTexture_tvtbl")

@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2l6up2xs5ra6"]
+
+[ext_resource type="PackedScene" uid="uid://d08iaayqjjhvw" path="res://Scenes/scene.tscn" id="1_5yr3k"]
+[ext_resource type="Texture2D" uid="uid://pkxv0uouacka" path="res://assets/H3/H3.png" id="2_x25av"]
+[ext_resource type="Script" path="res://Objects/teleporter.gd" id="3_ukjaa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2vd5h"]
+radius = 209.602
+
+[node name="Background" instance=ExtResource("1_5yr3k")]
+texture = ExtResource("2_x25av")
+
+[node name="H2Teleporter" type="Area2D" parent="." index="0"]
+position = Vector2(870, 352)
+script = ExtResource("3_ukjaa")
+target_path = "res://Scenes/h2.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="H2Teleporter" index="0"]
+shape = SubResource("CircleShape2D_2vd5h")

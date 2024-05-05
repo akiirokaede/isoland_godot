@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://2bk6dojns767"]
+
+[ext_resource type="Texture2D" uid="uid://m8q4d0qssao2" path="res://assets/UI/title_screen.png" id="1_phmqg"]
+[ext_resource type="Theme" uid="uid://bxwxonpd522ua" path="res://UI/title_theme.tres" id="1_r4xba"]
+[ext_resource type="Script" path="res://UI/title_screen.gd" id="3_d70qn"]
+
+[node name="TitleScreen" type="TextureRect"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("1_r4xba")
+texture = ExtResource("1_phmqg")
+script = ExtResource("3_d70qn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="New" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "新游戏"
+
+[node name="Load" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "加载"
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "退出"
+
+[connection signal="pressed" from="VBoxContainer/New" to="." method="_on_new_pressed"]
+[connection signal="pressed" from="VBoxContainer/Load" to="." method="_on_load_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

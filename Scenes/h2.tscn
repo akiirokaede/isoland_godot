@@ -1,0 +1,89 @@
+[gd_scene load_steps=16 format=3 uid="uid://8jxd6003lt0d"]
+
+[ext_resource type="PackedScene" uid="uid://d08iaayqjjhvw" path="res://Scenes/scene.tscn" id="1_c1qxe"]
+[ext_resource type="Texture2D" uid="uid://bcrkkld6bkbsy" path="res://assets/H2/H2.png" id="2_vrjgb"]
+[ext_resource type="Script" path="res://Objects/teleporter.gd" id="3_1f6m5"]
+[ext_resource type="Script" path="res://Scenes/h2.gd" id="3_dpcku"]
+[ext_resource type="Script" path="res://Objects/interactable.gd" id="4_cq1s0"]
+[ext_resource type="PackedScene" uid="uid://b6hhjnry6ys6a" path="res://UI/dialog_bubble.tscn" id="5_3i5so"]
+[ext_resource type="Script" path="res://Objects/sceneitem.gd" id="7_ikxjb"]
+[ext_resource type="Resource" uid="uid://wn40qvnbbdft" path="res://Items/key.tres" id="8_ellsh"]
+[ext_resource type="Texture2D" uid="uid://drobfvla1rpum" path="res://assets/H2/key.png" id="9_wpylr"]
+[ext_resource type="Script" path="res://Objects/flagswitch.gd" id="10_0yxtn"]
+[ext_resource type="Texture2D" uid="uid://vbceiso8o8x3" path="res://assets/H2/door.png" id="11_vhhus"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5ech7"]
+radius = 51.0392
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1sm40"]
+radius = 64.1249
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gjdhr"]
+size = Vector2(206, 356)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vc50"]
+size = Vector2(230, 434)
+
+[node name="Background" instance=ExtResource("1_c1qxe")]
+texture = ExtResource("2_vrjgb")
+script = ExtResource("3_dpcku")
+
+[node name="H1Teleporter" type="Area2D" parent="." index="0"]
+position = Vector2(-673, -330)
+script = ExtResource("3_1f6m5")
+target_path = "res://Scenes/h1.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="H1Teleporter" index="0"]
+shape = SubResource("CircleShape2D_5ech7")
+
+[node name="H4Teleporter" type="Area2D" parent="." index="1"]
+position = Vector2(-673, -330)
+script = ExtResource("3_1f6m5")
+target_path = "res://Scenes/h4.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="H4Teleporter" index="0"]
+position = Vector2(1426, 348)
+shape = SubResource("CircleShape2D_1sm40")
+
+[node name="FlagSwitch" type="Node2D" parent="." index="2"]
+script = ExtResource("10_0yxtn")
+flag = "h2a_unlocked"
+
+[node name="H2ATeleporter" type="Area2D" parent="FlagSwitch" index="0"]
+position = Vector2(14, -227)
+script = ExtResource("3_1f6m5")
+target_path = "res://Scenes/h2a.tscn"
+texture = ExtResource("11_vhhus")
+
+[node name="H3Teleporter" type="Area2D" parent="FlagSwitch" index="1"]
+position = Vector2(36, -221)
+script = ExtResource("3_1f6m5")
+target_path = "res://Scenes/h3.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlagSwitch/H3Teleporter" index="0"]
+shape = SubResource("RectangleShape2D_gjdhr")
+
+[node name="Granny" type="Area2D" parent="." index="3"]
+position = Vector2(-460, -34)
+script = ExtResource("4_cq1s0")
+allow_item = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Granny" index="0"]
+shape = SubResource("RectangleShape2D_5vc50")
+
+[node name="DialogBubble" parent="Granny" index="1" instance=ExtResource("5_3i5so")]
+visible = false
+offset_left = 133.0
+offset_top = 94.0
+offset_right = 133.0
+offset_bottom = 94.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="Key" type="Area2D" parent="." index="4"]
+position = Vector2(81, 474)
+script = ExtResource("7_ikxjb")
+item = ExtResource("8_ellsh")
+texture = ExtResource("9_wpylr")
+
+[connection signal="interact" from="Granny" to="." method="_on_granny_interact"]
